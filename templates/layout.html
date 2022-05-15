@@ -26,13 +26,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="/">Home</a>
-              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="/blog">Blogs</a>
+              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="{{ url_for('home') }}">Home</a>
+              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="{{ url_for('blog') }}">Blogs</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="/login">Login</a>
-              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="/register">Register</a>
+              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="{{ url_for('register') }}">Register</a>
+              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="{{ url_for('login') }}">Login</a>
             </div>
           </div>
         </div>

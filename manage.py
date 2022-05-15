@@ -26,9 +26,9 @@ def home():
     return render_template('index.html', posts=posts)
 
 
-@app.route("/about")
-def about():
-    return render_template('about.html', title='About')
+@app.route("/blog")
+def blog():
+    return render_template('blog.html', title='Blog')
 
 @app.route("/register", methods=['GET', 'POST'])
 def register():
@@ -41,9 +41,15 @@ def register():
     return render_template('register.html', title='Register', form=form)
 
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'admin@blog.com' and form.password.data == 'password':
+            flash('Login successful!', 'success')
+            return redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessful!Please check username & password', 'danger')
     return render_template('login.html', title='Login', form=form)
 
 
