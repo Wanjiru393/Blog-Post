@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 
     {% if title %}
         <title> Blog Post - {{ title }}</title>
@@ -26,13 +26,13 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="/">Home</a>
-              <a class="nav-item nav-link" href="/blog">Blogs</a>
+              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="/">Home</a>
+              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="/blog">Blogs</a>
             </div>
             <!-- Navbar Right Side -->
             <div class="navbar-nav">
-              <a class="nav-item nav-link" href="/login">Login</a>
-              <a class="nav-item nav-link" href="/register">Register</a>
+              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="/login">Login</a>
+              <a class="nav-item nav-link mr-5 ms-5" style="color: #561c8b;" href="/register">Register</a>
             </div>
           </div>
         </div>
