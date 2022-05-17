@@ -1,25 +1,20 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="container col-md-10 mt-4">
+<div class="container mt-3">
   <article class="media content-section">
     <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + post.author.image_file) }}">
     <div class="media-body">
-      <div class="article-metadata">
-        
-        <!-- <small class="text-muted">{{ post.date_posted.strftime('%Y-%m-%d') }}</small> -->
-        
-      </div>
       <div class="container">
       </div>
       <div>
-        <h2 class="article-title">{{ post.title }}</h2>
-      <p class="article-content">{{ post.content }}</p>
+        <h2 class="post-title">{{ post.title }}</h2>
+      <p class="post-content">{{ post.content }}</p>
       <p class="text-center">By:{{ post.author.username }}</p>
       
-      <div>
+      <!-- <div>
       {{data}}
-      </div>
+      </div> -->
 
       </div>
       

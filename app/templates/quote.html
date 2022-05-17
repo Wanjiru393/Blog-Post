@@ -1,11 +1,15 @@
 {% extends "layout.html" %}
 {% block content %}
-<div class="container col-md-12 mt-4">
+<div class="container">
+    <div class="cards mt-3">
     {% for datas in data %}
         <p>{{data.quote}}</p>
         <p class="text-center">Author: {{data.author}}</p>
     {% endfor %}
 </div>
+
+</div>
+
 
     
 {% endblock content %}

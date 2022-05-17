@@ -2,7 +2,6 @@ body {
   background: #fafafa;
   color: #333333;
   margin-top: 5rem;
-  
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -31,7 +30,6 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #dddddd;
   border-radius: 3px;
   margin-bottom: 20px;
-  margin-left: 40px;
 }
 
 .article-title {
@@ -79,11 +77,4 @@ a.article-title:hover {
 
 .account-heading {
   font-size: 2.5rem;
-}
-.cards{
-  background-color: cyan;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 3px;
 }
