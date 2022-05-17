@@ -43,9 +43,9 @@ class PostForm(FlaskForm):
     submit = SubmitField('Post')
 
 
-# class CommentForm(FlaskForm):
-#     comment = StringField('Comment')
-#     submit = SubmitField('Comment')
+class CommentForm(FlaskForm):
+    comment = StringField('Comment')
+    submit = SubmitField('Comment')
 
 class RequestResetForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])

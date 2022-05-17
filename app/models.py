@@ -45,20 +45,20 @@ class Post(db.Model):
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.Text, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    # comment = db.relationship('Comment', backref='post', lazy='dynamic')
+    comment = db.relationship('Comment', backref='post', lazy='dynamic')
 
 
     def __repr__(self):
         return f"Post('{self.title}', '{self.date_posted}')"
 
 
-# class Comment(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     user_id = db.Column(db.Integer, db.ForeignKey(
-#         'user.id'), nullable=False)  # Id of the user
-#     post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
-#     comment = db.Column(db.String(100))
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey(
+        'user.id'), nullable=False)  # Id of the user
+    post_id = db.Column(db.Integer, db.ForeignKey('post.id'), nullable=False)
+    comment = db.Column(db.String(100))
 
 
-# def __repr__(self):
-#         return f"Post({self.comment})"
+def __repr__(self):
+        return f"Post({self.comment})"

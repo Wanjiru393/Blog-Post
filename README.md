@@ -2,7 +2,7 @@
 This is a web application that allows user create a personal blogging website where you can share your opinions and other users can read and comment on them. 
 
 ## Setup Instructions and Installation
-Clone this repository to a location in your file system. https://github.com/Wanjiru393/Blog-Post.git Open terminal command line then navigate to the root folder of the application. `cd MinutePitcher Run python3 mange.py
+Clone this repository to a location in your file system. https://github.com/Wanjiru393/Blog-Post.git Open terminal command line then navigate to the root folder of the application. `cd Blog-Post Run python3 mange.py
 
 ## Technologies Used
 MDbootstrap 5 
