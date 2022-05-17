@@ -80,3 +80,10 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+.cards{
+  background-color: cyan;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 3px;
+}

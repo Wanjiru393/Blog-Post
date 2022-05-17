@@ -3,6 +3,7 @@ from app import app, db, bcrypt
 from .forms import RegistrationForm, LoginForm, PostForm
 from .models import User,Post
 from flask_login import login_user,current_user, logout_user, login_required
+import requests
 
 
 
@@ -11,6 +12,18 @@ from flask_login import login_user,current_user, logout_user, login_required
 def home():
     posts = Post.query.all()
     return render_template('index.html', posts=posts)
+
+
+
+
+@app.route('/quote', methods=['GET','POST'])
+def quote():
+    req = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
+    data = json.loads(req.content)
+    return render_template('quote.html', data=data)
+
+
+
 
 
 @app.route("/register", methods=['GET', 'POST'])
