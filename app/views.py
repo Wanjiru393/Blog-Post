@@ -1,4 +1,4 @@
-from flask import  render_template, url_for, flash,redirect,request,abort
+from flask import  render_template, url_for, flash,redirect,request,abort, json
 from app import app, db, bcrypt
 from .forms import RegistrationForm, LoginForm, PostForm
 from .models import User,Post
@@ -76,6 +76,11 @@ def post(post_id):
     return render_template('post.html', title=post.title, post=post)
 
 
+
+
+
+
+
 @app.route("/post/<int:post_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_post(post_id):
@@ -105,3 +110,28 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been deleted!', 'success')
     return redirect(url_for('home'))
+
+
+
+
+
+
+
+# @app.route('/comments/<int:post_id>', methods=['POST', 'GET'])
+# @login_required
+# def comment(post_id):
+#     post = Post.query.get_or_404(post_id)
+#     form = CommentForm()
+#     allComments = Comment.query.filter_by(post_id=post_id).all()
+#     if form.validate_on_submit():
+#         postedComment = Comment(comment=form.comment.data,
+#                                 user_id=current_user.id, post_id=post_id)
+#         post_id = post_id
+#         db.session.add(postedComment)
+#         db.session.commit()
+#         flash('Comment added successfully')
+
+#         return redirect(url_for('comment', post_id=post_id))
+
+#     return render_template("comment.html", post=post, title='React to Blog!', form=form, allComments=allComments)
+
