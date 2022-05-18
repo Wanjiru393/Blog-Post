@@ -1,11 +1,11 @@
 from flask import  render_template, url_for, flash,redirect,request,abort, json
-from app import app, db, bcrypt
-from .forms import RegistrationForm, LoginForm, PostForm,RequestResetForm, ResetPasswordForm
-from .models import User,Post
+from app import app, db, bcrypt,mail
+from .forms import RegistrationForm, LoginForm,CommentForm,StringField, PostForm,RequestResetForm, ResetPasswordForm
+from .models import User,Post,Comment
 from flask_login import login_user,current_user, logout_user, login_required
 import requests
 import smtplib
-from email.message import EmailMessage
+from flask_mail import  Message
 
 
 
@@ -19,17 +19,11 @@ def home():
     return render_template('index.html', posts=posts)
 
 
-
-
-
 @app.route('/quote', methods=['GET','POST'])
 def quote():
     req = requests.get('http://quotes.stormconsultancy.co.uk/random.json')
     data = json.loads(req.content)
     return render_template('quote.html', data=data)
-
-
-
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -91,12 +85,9 @@ def new_post():
 
 @app.route("/post/<int:post_id>")
 def post(post_id):
+    print(post_id)
     post = Post.query.get_or_404(post_id)
     return render_template('post.html', title=post.title, post=post)
-
-
-
-
 
 
 
@@ -132,13 +123,9 @@ def delete_post(post_id):
 
 
 
-
-
-
-
 # @app.route('/comments/<int:post_id>', methods=['POST', 'GET'])
 # @login_required
-# def comment(post_id):
+# def comment():
 #     post = Post.query.get_or_404(post_id)
 #     form = CommentForm()
 #     allComments = Comment.query.filter_by(post_id=post_id).all()
@@ -154,7 +141,16 @@ def delete_post(post_id):
 
 #     return render_template("comment.html", post=post, title='React to Blog!', form=form, allComments=allComments)
 
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Password reset request', sender='noreply@gmail.com', 
+    recipients=[user.email])
 
+    msg.body = f''' To reset password,visit the link below
+{url_for('reset_token',token=token, _external = True)}
+
+If you did not initiate this request,kindly ignore this.
+'''
 
 
 
@@ -165,11 +161,14 @@ def reset_request():
     form = RequestResetForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('A Password reset email has been sent to your address','info')
+        return redirect(url_for('login'))
     return render_template('reset_request.html', title ='Reset Password', form=form)
 
 
 @app.route("/reset_password/<token>", methods=['GET','POST'])
-def reset_token():
+def reset_token(token):
     if current_user.is_authenticated():
         return redirect(url_for('home'))
     user = User.verify_reset_token(token)
@@ -177,4 +176,11 @@ def reset_token():
         flash('Expired token', 'warning')
         return redirect(url_for('reset_request'))
     form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password  = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash(f'Password Reset successfully! ', 'success')
+        return redirect(url_for('login'))
+    
     return render_template('reset_token.html', title ='Reset Password', form=form)
