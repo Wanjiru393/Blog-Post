@@ -1,7 +1,7 @@
 from flask import  render_template, url_for, flash,redirect,request,abort, json
 from app import app, db, bcrypt,mail
-from .forms import RegistrationForm, LoginForm,CommentForm,StringField, PostForm,RequestResetForm, ResetPasswordForm
-from .models import User,Post,Comment
+from .forms import RegistrationForm, LoginForm,StringField, PostForm,RequestResetForm, ResetPasswordForm
+from .models import User,Post
 from flask_login import login_user,current_user, logout_user, login_required
 import requests
 import smtplib
