@@ -18,6 +18,10 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
+
+PORT=5002
+HOST='0.0.0.0'
+
 app.config['MAIL_USE_TLS'] = True
 
 app.config['MAIL_USE_USERNAME'] = os.environ.get('EMAIL_USER')
